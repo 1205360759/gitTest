@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.SysUserTokenMapper">
+
+    <select id="selectById"
+            parameterType="java.lang.Long" resultMap="SysUserTokenMap">
+        select
+        *
+        from sys_user_token
+        where user_id = #{userId}
+    </select>
+
+    <select id="selectBytoken"
+            parameterType="java.lang.String" resultMap="SysUserTokenMap">
+        select
+        *
+        from sys_user_token
+        where token = #{token}
+    </select>
+
+    <resultMap type="com.example.entity.SysUserTokenEntity" id="SysUserTokenMap">
+        <result property="userId" column="user_id" />
+        <result property="token" column="token" />
+        <result property="expireTime" column="expire_time" />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <insert id="insert"
+            parameterType="com.example.entity.SysUserTokenEntity">
+        insert into sys_user_token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null and userId !=''">
+                user_id,
+            </if>
+            <if test="token != null and token !=''">
+                token,
+            </if>
+
+            expire_time,update_time
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null and userId !=''">
+                #{userId},
+            </if>
+            <if test="token != null and token !=''">
+                #{token},
+            </if>
+
+            #{expireTime},#{updateTime}
+
+        </trim>
+    </insert>
+
+    <update id="updateById"
+            parameterType="com.example.entity.SysUserTokenEntity">
+        update sys_user_token
+        <set>
+            <if test="token != null and token !=''">
+                token=#{token},
+            </if>
+            expire_time=#{expireTime},
+            update_time=#{updateTime}
+        </set>
+        where user_id = #{userId}
+    </update>
+
+
+
+</mapper>

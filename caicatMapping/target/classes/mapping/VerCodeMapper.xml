@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.VerCodeMapper">
+
+
+    <insert id="insertSelective"
+            parameterType="com.example.entity.VerCodeEntity">
+        insert into sys_captcha
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid !=''">
+                uuid,
+            </if>
+            <if test="code != null ">
+                code,
+            </if>
+
+                expireTime
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uuid != null and uuid !=''">
+                #{uuid},
+            </if>
+            <if test="code != null and code !=''">
+                #{code},
+            </if>
+
+                #{expireTime}
+
+        </trim>
+    </insert>
+
+    <select id="selectByPrimaryKey"
+            parameterType="java.lang.String" resultMap="VerCodeMap">
+        select
+        *
+        from sys_captcha
+        where uuid = #{uuid}
+    </select>
+
+    <resultMap type="com.example.entity.VerCodeEntity" id="VerCodeMap">
+        <result property="uuid" jdbcType="CHAR" column="uuid" />
+        <result property="code" jdbcType="VARCHAR" column="code" />
+        <result property="expireTime" jdbcType="TIMESTAMP" column="expireTime" />
+    </resultMap>
+
+    <delete id="deleteBatch" parameterType="String">
+        delete from sys_captcha where 1>2
+        or uuid in
+        <foreach collection="array" item="uuid" index="no" open="(" separator="," close=")">
+            #{uuid}
+        </foreach>
+    </delete>
+
+</mapper>

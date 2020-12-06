@@ -1,0 +1,85 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  }
+body{
+  width: 100%;
+  background: rgba(83, 164, 231, 0.2);
+  background-size: 100% 100%;
+  overflow: hidden;
+  padding-top: 3vh;
+}
+.box {
+  width: 90%;
+  margin: auto;
+  font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.box p{
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  text-indent: 3vw;
+  background: rgba(0, 0, 0, 0.2);
+}
+.search_box{
+  padding: 6vh 3vw;
+}
+.search_box input{
+  border: 1px solid #5cade2;
+  outline: none;
+  border-radius: 5px;
+  text-indent: 6px;
+  margin-top: -2px;
+  margin-right: 32px;
+}
+#query{
+  text-indent: 0px !important;
+  background: #5cade2;
+  width: 66px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 18px;
+  color: aliceblue;
+  margin-top: -8px;
+}
+.datetimepicker td, .datetimepicker th{
+  width: 24px;
+}
+.table_box{
+  width: 96%;
+  margin: auto;
+  overflow-y: scroll;
+}
+.search{
+  float: left !important;
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+    width: 0px;
+    height: 0px;
+    background-color: #F5F5F5;
+}
+ 
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+ 
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}

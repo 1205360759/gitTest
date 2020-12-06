@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.LoginLogMapper" >
+    <insert id="saveLoginLog" parameterType="com.example.entity.LoginLog">
+        insert into sys_login_log
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="loginLog.loginLogId != null" >
+                LOGIN_LOG_ID,
+            </if>
+            <if test="loginLog.logName != null" >
+                LOG_NAME,
+            </if>
+            <if test="loginLog.userId != null" >
+                USER_ID,
+            </if>
+            <if test="loginLog.createTime != null" >
+                CREATE_TIME,
+            </if>
+            <if test="loginLog.succeed != null" >
+                SUCCEED,
+            </if>
+            <if test="loginLog.message != null" >
+                MESSAGE,
+            </if>
+            <if test="loginLog.ipAddress != null" >
+                IP_ADDRESS,
+            </if>
+            <if test="loginLog.loginTime != null" >
+                LOGIN_TIME,
+            </if>
+            <if test="loginLog.exitTime != null" >
+                EXIT_TIME,
+            </if>
+            <if test="loginLog.userName != null" >
+                USER_NAME,
+            </if>
+            <if test="loginLog.status != null" >
+                STATUS
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="loginLog.loginLogId != null" >
+                #{loginLog.loginLogId,jdbcType=BIGINT},
+            </if>
+            <if test="loginLog.logName != null" >
+                #{loginLog.logName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginLog.userId != null" >
+                #{loginLog.userId,jdbcType=BIGINT},
+            </if>
+            <if test="loginLog.createTime != null" >
+                #{loginLog.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginLog.succeed != null" >
+                #{loginLog.succeed,jdbcType=VARCHAR},
+            </if>
+            <if test="loginLog.message != null" >
+                #{loginLog.message,jdbcType=VARCHAR},
+            </if>
+            <if test="loginLog.ipAddress != null" >
+                #{loginLog.ipAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="loginLog.loginTime != null" >
+                #{loginLog.loginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginLog.exitTime != null" >
+                #{loginLog.exitTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginLog.userName != null" >
+                #{loginLog.userName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginLog.status != null" >
+                #{loginLog.status,jdbcType=INTEGER}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getLoginLogList" resultType="com.example.wapper.LoginLogWapper">
+        select
+             LOGIN_LOG_ID loginLogId,
+             LOG_NAME logName,
+             USER_ID userId,
+             date_format(CREATE_TIME, '%Y-%m-%d %H:%i:%s') createTime,
+             SUCCEED succeed,
+             MESSAGE message,
+             IP_ADDRESS ipAddress,
+             date_format(LOGIN_TIME, '%Y-%m-%d %H:%i:%s') loginTime,
+             date_format(EXIT_TIME, '%Y-%m-%d %H:%i:%s') exitTime,
+             USER_NAME userName,
+             STATUS status
+        from sys_login_log where STATUS = 1 ORDER BY CREATE_TIME desc
+    </select>
+
+
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        update  sys_login_log set STATUS = 0
+        where LOGIN_LOG_ID = #{loginLogId}
+    </update>
+</mapper>
