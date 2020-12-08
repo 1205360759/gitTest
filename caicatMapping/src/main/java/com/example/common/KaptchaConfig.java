@@ -23,7 +23,7 @@ public class KaptchaConfig {
         properties.put("kaptcha.textproducer.font.color", "black");
         //间距
         properties.put("kaptcha.textproducer.char.space", "6");
-        //长度
+        //长度 长度
         properties.put("kaptcha.textproducer.char.length", "5");
 
         Config config = new Config(properties);
